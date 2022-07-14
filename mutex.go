@@ -1,4 +1,5 @@
-//Simple counter state can be done using atomic operations. For more complex state we can use a mutex to safely access data across multiple goroutines.
+//For more complex state we can use a mutex to safely access data across multiple goroutines.
+
 package main
 
 import (
@@ -37,11 +38,7 @@ func main() {
 	go doIncrement("a", 10000)
 	go doIncrement("a", 10000)
 	go doIncrement("b", 10000)
-	//Wait a for the goroutines to finish
+	//Wait for the goroutines to finish
 	wg.Wait()
 	fmt.Println(c.counters)
 }
-
-//Running the program shows that the counters updated as expected.
-//$ go run mutexes.go
-//map[a:20000 b:10000]
